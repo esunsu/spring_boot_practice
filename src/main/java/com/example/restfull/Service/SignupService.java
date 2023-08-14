@@ -6,6 +6,7 @@ import com.example.restfull.Domain.Repos.MemberRepos;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,16 +14,26 @@ import org.springframework.stereotype.Service;
 
 public class SignupService {
     private final MemberRepos memberRepos;
+    private final PasswordEncoder passwordEncoder;
 
-    public boolean isMemberExist(String email, String pw){
-        return memberRepos.findByEmailAndPw(email, pw).isPresent();
+
+    public boolean isMemberExist(String email){
+        return memberRepos.findByEmail(email).isPresent();
     }
-    public Member Signup(SignupForm form){
-        if(isMemberExist(form.getEmail(), form.getPw())){
-            throw new MemberException(ErrorCode.ALREADY_EXSISTS_EMAIL_PW);
-        }
-        else{
-            return memberRepos.save(Member.from(form));
+
+    public Member Signup(SignupForm signupForm){
+        String encrypt_pw = "" ;
+        if(isMemberExist(signupForm.getEmail())){
+            throw new MemberException(ErrorCode.ALREADY_EXSISTS_EMAIL);
+        } // 중복체크
+        else if(!(signupForm.getPw().length() <8)){
+            //  패스워드 암호화
+            Member member = signupForm.from(signupForm);
+            encrypt_pw = passwordEncoder.encode(signupForm.getPw());
+            member.setPw(encrypt_pw);
+            return memberRepos.save(member);
+        }else{
+            throw new MemberException(ErrorCode.NOT_VALID_PASSWORD);
         }
     }
 
