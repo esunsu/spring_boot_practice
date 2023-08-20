@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 
 @Service
@@ -57,13 +56,11 @@ public class SignupService {
 
             return member;
 
-
         }//  패스워드 암호화
         else {
             throw new MemberException(ErrorCode.NOT_VALID_PASSWORD);
         }
     }
-
     private String MailText(String email, String code) {
         StringBuilder stringBuilder = new StringBuilder();
 

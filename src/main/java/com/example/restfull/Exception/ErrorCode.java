@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-import javax.management.loading.MLetContent;
 
 @RequiredArgsConstructor
 @Getter
@@ -15,7 +14,11 @@ public enum ErrorCode {
 
     NOT_EQUALS_CODE(HttpStatus.BAD_REQUEST, "잘못된 코드입니다."),
 
-    NOT_VALID_INPUT(HttpStatus.BAD_REQUEST, "올바른 형식으로 입력하시오.");
+    NOT_VALID_INPUT(HttpStatus.BAD_REQUEST, "올바른 형식으로 입력하시오."),
+
+    NOT_EXSISTS_MEMBER(HttpStatus.BAD_REQUEST, "존재하지 않는 회원입니다."),
+
+    NOT_CORRECT_PASSWORD(HttpStatus.BAD_REQUEST, "잘못된 패스워드입니다.");
 
     private final HttpStatus httpStatus;
 
