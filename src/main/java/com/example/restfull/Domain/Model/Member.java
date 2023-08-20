@@ -9,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Getter
@@ -22,14 +24,15 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberId;
-    @NotNull
+    @NotBlank
     @Email(message = "이메일 형식을 맞추세요.")
     private String email;
-    @NotNull
+    @NotBlank
+    @Pattern(regexp="(?=.*\\W)(?=\\S+$)", message = "특수문자 포함한 8글자 이상의 비밀번호를 입력하시오.")
     private String pw;
-    @NotNull
+    @NotBlank
     private String name;
-    @NotNull
+    @NotBlank
     private String contact;
     private String verification_code;//인증코드
     private boolean certified;//인증됨

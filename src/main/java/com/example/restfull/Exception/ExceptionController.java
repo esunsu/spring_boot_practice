@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.xml.bind.ValidationException;
-
 @ControllerAdvice
 public class ExceptionController {
     @ExceptionHandler({MemberException.class})
@@ -23,4 +21,7 @@ public class ExceptionController {
         private String message;
         private ErrorCode errorCode;
     }
+
+
+
 }

@@ -38,7 +38,8 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'//메일건
 
-    implementation 'org.apache.commons:commons-lang3:3.12.0'//랜덤함수
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.jetbrains:annotations:24.0.0'//랜덤함수
 
     compileOnly 'org.projectlombok:lombok'
 

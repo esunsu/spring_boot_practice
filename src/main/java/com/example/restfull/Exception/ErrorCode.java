@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+import javax.management.loading.MLetContent;
+
 @RequiredArgsConstructor
 @Getter
 public enum ErrorCode {
@@ -18,4 +20,5 @@ public enum ErrorCode {
     private final HttpStatus httpStatus;
 
     private final String detail;
-    }
+
+}
