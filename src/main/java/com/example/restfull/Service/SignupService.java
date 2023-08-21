@@ -3,7 +3,7 @@ package com.example.restfull.Service;
 import com.example.restfull.Client.MailgunClient;
 import com.example.restfull.Client.SendMailForm;
 import com.example.restfull.Domain.Form.SignupForm;
-import com.example.restfull.Domain.Model.Member;
+import com.example.restfull.Domain.entity.Member;
 import com.example.restfull.Domain.Repos.MemberRepos;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
