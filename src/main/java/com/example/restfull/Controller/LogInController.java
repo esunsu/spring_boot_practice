@@ -1,14 +1,12 @@
 package com.example.restfull.Controller;
 
 
-import com.example.restfull.Domain.Form.SignupForm;
-import com.example.restfull.Exception.MemberException;
+import com.example.restfull.Domain.Form.LogInForm;
 import com.example.restfull.Service.LogInService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/login")
@@ -17,12 +15,8 @@ public class LogInController {
     private final LogInService loginService;
 
     @PostMapping("/user")
-    public ResponseEntity<String> loginCheck(@RequestParam String email, String pw){
-        if(loginService.LoginMethod(email, pw)){
-            return ResponseEntity.ok("로그인에 성공하였습니다.");
-        }else {
-            return ResponseEntity.ok("회원이 아닙니다.");
-        }
+    public ResponseEntity<String> loginCheck(@RequestBody LogInForm logInForm){
+        return ResponseEntity.ok(loginService.LoginMethod(logInForm.getEmail(),logInForm.getPw()));
     }
 
 }

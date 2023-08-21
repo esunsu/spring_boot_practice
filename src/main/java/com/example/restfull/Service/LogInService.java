@@ -1,13 +1,11 @@
 package com.example.restfull.Service;
 
 
-import com.example.restfull.Client.SendMailForm;
-import com.example.restfull.Domain.Form.LogInForm;
-import com.example.restfull.Domain.Form.SignupForm;
-import com.example.restfull.Domain.Model.Member;
 import com.example.restfull.Domain.Repos.MemberRepos;
+import com.example.restfull.Domain.entity.Member;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
+import com.example.restfull.Filter.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,24 +15,18 @@ import org.springframework.stereotype.Service;
 public class LogInService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepos memberRepos;
-
-    public boolean isMemberExist(String email, String pw){
-        return memberRepos.findByEmailAndPw(email, pw).isPresent();
-    }
-    public boolean isEmailExist(String email){
-        return memberRepos.findByEmail(email).isPresent();
-    }
-    public boolean LoginMethod(String email, String pw) {
-        if(!isEmailExist(email)){
-            throw new MemberException(ErrorCode.NOT_EXSISTS_MEMBER);
+    private final JwtTokenProvider jwtTokenProvider;
+    public String LoginMethod(String email, String pw) {
+        Member member = memberRepos.findByEmail(email)
+                .orElseThrow(
+                        ()->new MemberException(ErrorCode.NOT_EXSISTS_MEMBER)
+                );
+        if(passwordEncoder.matches(pw, member.getPw())){
+            return jwtTokenProvider.createAccessToken(member.getUsername(), member.getRoles());
         }
         else{
-            if(passwordEncoder.matches(pw, memberRepos.findByEmail(email).get().getPw())){
-                return true;
-            }
-            else{
-                throw new MemberException(ErrorCode.NOT_CORRECT_PASSWORD);
-            }
+            throw new MemberException(ErrorCode.NOT_CORRECT_PASSWORD);
         }
+
     }
 }
