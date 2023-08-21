@@ -16,7 +16,7 @@ import javax.validation.Valid;
 public class LogInController {
     private final LogInService loginService;
 
-    @GetMapping("/user")
+    @PostMapping("/user")
     public ResponseEntity<String> loginCheck(@RequestParam String email, String pw){
         if(loginService.LoginMethod(email, pw)){
             return ResponseEntity.ok("로그인에 성공하였습니다.");

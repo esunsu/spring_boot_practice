@@ -9,11 +9,13 @@ import com.example.restfull.Domain.Repos.MemberRepos;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class LogInService {
+    private final PasswordEncoder passwordEncoder;
     private final MemberRepos memberRepos;
 
     public boolean isMemberExist(String email, String pw){
@@ -23,17 +25,16 @@ public class LogInService {
         return memberRepos.findByEmail(email).isPresent();
     }
     public boolean LoginMethod(String email, String pw) {
-        if (!isMemberExist(email, pw)) {
-            if(isEmailExist(email)){
+        if(!isEmailExist(email)){
+            throw new MemberException(ErrorCode.NOT_EXSISTS_MEMBER);
+        }
+        else{
+            if(passwordEncoder.matches(pw, memberRepos.findByEmail(email).get().getPw())){
+                return true;
+            }
+            else{
                 throw new MemberException(ErrorCode.NOT_CORRECT_PASSWORD);
             }
-            else {
-                throw new MemberException(ErrorCode.NOT_EXSISTS_MEMBER);
-            }
-        } // db확인
-
-        else {
-            return true;
         }
     }
 }
