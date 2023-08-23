@@ -6,6 +6,7 @@ import com.example.restfull.Domain.entity.Member;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
 import com.example.restfull.Filter.JwtTokenProvider;
+import com.example.restfull.Filter.Token;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,16 @@ public class LogInService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepos memberRepos;
     private final JwtTokenProvider jwtTokenProvider;
-    public String LoginMethod(String email, String pw) {
+    private final JwtService jwtService;
+    public Token LoginMethod(String email, String pw) {
         Member member = memberRepos.findByEmail(email)
                 .orElseThrow(
                         ()->new MemberException(ErrorCode.NOT_EXSISTS_MEMBER)
                 );
         if(passwordEncoder.matches(pw, member.getPw())){
-            return jwtTokenProvider.createAccessToken(member.getUsername(), member.getRoles());
+            Token tokenDto = jwtTokenProvider.createAccessToken(member.getUsername(), member.getRoles());
+            jwtService.login(tokenDto);
+            return tokenDto;
         }
         else{
             throw new MemberException(ErrorCode.NOT_CORRECT_PASSWORD);
