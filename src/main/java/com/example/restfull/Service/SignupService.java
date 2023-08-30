@@ -3,7 +3,7 @@ package com.example.restfull.Service;
 import com.example.restfull.Client.MailgunClient;
 import com.example.restfull.Client.SendMailForm;
 import com.example.restfull.Domain.Form.SignupForm;
-import com.example.restfull.Domain.entity.Member;
+import com.example.restfull.Domain.Entity.Member;
 import com.example.restfull.Domain.Repos.MemberRepos;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
@@ -37,7 +37,6 @@ public class SignupService {
         if (isMemberExist(signupForm.getEmail())) {
             throw new MemberException(ErrorCode.ALREADY_EXSISTS_EMAIL);
         } // 중복체크
-
         else if (!(signupForm.getPw().length() < 8)) {
             Member member = signupForm.from(signupForm);
             encrypt_pw = passwordEncoder.encode(signupForm.getPw());
