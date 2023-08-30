@@ -1,7 +1,7 @@
 package com.example.restfull.Controller;
 
 import com.example.restfull.Domain.Repos.MemberRepos;
-import com.example.restfull.Domain.entity.Member;
+import com.example.restfull.Domain.Entity.Member;
 import com.example.restfull.Exception.ErrorCode;
 import com.example.restfull.Exception.MemberException;
 import com.example.restfull.Filter.JwtTokenProvider;

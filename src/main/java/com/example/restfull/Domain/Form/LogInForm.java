@@ -1,6 +1,6 @@
 package com.example.restfull.Domain.Form;
 
-import com.example.restfull.Domain.entity.Member;
+import com.example.restfull.Domain.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

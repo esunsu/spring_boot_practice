@@ -1,7 +1,6 @@
 package com.example.restfull.Domain.Repos;
 
-import com.example.restfull.Domain.entity.Member;
-import com.example.restfull.Domain.entity.RefreshToken;
+import com.example.restfull.Domain.Entity.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.example.restfull.Domain.entity;
+package com.example.restfull.Domain.Entity;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

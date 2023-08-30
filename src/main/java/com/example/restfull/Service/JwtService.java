@@ -1,7 +1,7 @@
 package com.example.restfull.Service;
 
 import com.example.restfull.Domain.Repos.RefreshTokenRepository;
-import com.example.restfull.Domain.entity.RefreshToken;
+import com.example.restfull.Domain.Entity.RefreshToken;
 import com.example.restfull.Filter.JwtTokenProvider;
 import com.example.restfull.Filter.Token;
 import lombok.RequiredArgsConstructor;

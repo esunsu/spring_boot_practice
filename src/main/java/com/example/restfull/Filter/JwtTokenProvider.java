@@ -1,6 +1,6 @@
 package com.example.restfull.Filter;
 
-import com.example.restfull.Domain.entity.RefreshToken;
+import com.example.restfull.Domain.Entity.RefreshToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

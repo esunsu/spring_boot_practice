@@ -1,6 +1,6 @@
 package com.example.restfull.Domain.Repos;
 
-import com.example.restfull.Domain.entity.Member;
+import com.example.restfull.Domain.Entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
