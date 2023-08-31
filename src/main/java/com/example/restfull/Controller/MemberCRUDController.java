@@ -1,9 +1,6 @@
 package com.example.restfull.Controller;
 
-import com.example.restfull.Domain.Entity.Member;
 import com.example.restfull.Domain.Form.GetEmailAndPwForm;
-import com.example.restfull.Domain.Form.LogInForm;
-import com.example.restfull.Domain.Form.SignupForm;
 import com.example.restfull.Domain.Form.UpdateMemberForm;
 import com.example.restfull.Exception.MemberException;
 import com.example.restfull.Service.MemberDeleteService;
@@ -12,11 +9,8 @@ import com.example.restfull.Service.MemberUpdateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/rud")
