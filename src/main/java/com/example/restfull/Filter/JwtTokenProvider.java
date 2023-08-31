@@ -24,15 +24,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
+
     @Value("${jwt-secret-key}")
     private String accessSecretKey;
 
     @Value("${jwt-refresh-secret-key}")
     private String refreshSecretKey;
 
-    // 토큰 유효시간 30분
-    private long accessTokenValidTime = 30 * 60 * 1000L;
-    private long refreshTokenValidTime = 30 * 60 * 1000L;
+    private String grantTy = "bearer";
+    private long accessTokenValidTime = 30 * 60 * 1000L;  // 토큰 유효시간 30분
+    private long refreshTokenValidTime = 7 * 24 * 2 * 30 * 60 * 1000L; // 토큰 유효시간 일주일
 
     private final UserDetailsService userDetailsService;
 
@@ -68,6 +69,7 @@ public class JwtTokenProvider {
                 .compact();
 
         return Token.builder()
+                .grantType(grantTy)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .key(userEmail)

@@ -21,7 +21,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RefreshController {
 
-
     private final JwtService jwtService;
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberRepos memberRepos;

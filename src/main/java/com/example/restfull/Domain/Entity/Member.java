@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int memberId;
+    private Long memberId;
     @Column
     @NotBlank
     @Email(message = "이메일 형식을 맞추세요.")
