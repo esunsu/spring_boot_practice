@@ -22,7 +22,7 @@ public class SignupController {
         return ResponseEntity.ok("회원가입에 성공하였습니다.");
     }
     @GetMapping("/verify")
-    public ResponseEntity<Boolean> VerifyMember(@RequestParam String email , @RequestParam String code){
+    public ResponseEntity<Boolean> verifyMember(@RequestParam String email , @RequestParam String code){
         return ResponseEntity.ok(signupService.verifyMember(email,code));
     }
 }

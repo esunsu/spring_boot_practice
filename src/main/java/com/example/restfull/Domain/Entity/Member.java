@@ -26,18 +26,18 @@ public class Member implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
     @Column
-    @NotBlank
+    @NotBlank(message = "이메일을 입력하시오.")
     @Email(message = "이메일 형식을 맞추세요.")
     private String email;
     @Column
-    @NotBlank
+    @NotBlank(message = "비밀번호를 입력하시오.")
     @Pattern(regexp="^(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "특수문자 포함한 8글자 이상의 비밀번호를 입력하시오.(사용가능 특수문자 : !@#$%^&*=")
     private String pw;
     @Column
-    @NotBlank
+    @NotBlank(message = "이름을 입력하시오.")
     private String name;
     @Column
-    @NotBlank
+    @NotBlank(message = "전화번호를 입력하시오.")
     private String contact;
     @Column
     private String verification_code;//인증코드

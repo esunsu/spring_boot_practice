@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface BoardRepos extends JpaRepository<Board, Long> {
+    Optional<Board> findByBoardId(Long boardId);
 
 }
